@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Сосал?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #cce4f7;
+      user-select: none;
+      overflow: hidden;
+    }
+    h1 a {
+      font-size: 4rem;
+      color: #a0c4ff;
+      text-decoration: none;
+      font-weight: 700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.25);
+      transition: color 0.3s ease;
+    }
+    h1 a:hover {
+      color: #ffd6e8;
+      text-decoration: underline;
+    }
+    .buttons-container {
+      margin-top: 50px;
+      width: 350px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    .btn {
+      background: #e63946;
+      border: none;
+      border-radius: 18px;
+      padding: 16px 44px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(230, 57, 70, 0.5);
+      transition:
+        background-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.15s ease;
+      position: relative;
+      user-select: none;
+      z-index: 10;
+    }
+    .btn:hover {
+      background-color: #d62828;
+      box-shadow: 0 12px 28px rgba(214, 40, 40, 0.7);
+      transform: scale(1.05);
+    }
+    #btn-no {
+      position: fixed;
+      z-index: 9999;
+      transition: left 0.04s ease, top 0.04s ease;
+      /* изначально фиксируется внизу справа */
+    }
+  </style>
+</head>
+<body>
+
+  <h1>
+    <a href="https://img.gazeta.ru/files3/374/21045374/okak-pic4_zoom-1500x1500-80023.jpg" target="_blank" rel="noopener noreferrer">
+      Сосал?
+    </a>
+  </h1>
+
+  <div class="buttons-container" id="buttons-container">
+    <button class="btn" id="btn-yes"
+      onclick="window.location.href='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXWrhNk2jPf06K_WBMsuWdftRftCo4oLLWVQ&s'">
+      Да
+    </button>
+    <button class="btn" id="btn-no"
+      onclick="window.location.href='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbCegTMOdtdweqLg2C_UeN7Akgw3bQcT9vQQ&s'">
+      Нет
+    </button>
+  </div>
+
+  <script>
+    const btnNo = document.getElementById('btn-no');
+    const margin = 15;
+
+    function placeBtnNoRight() {
+      const rect = btnNo.getBoundingClientRect();
+      btnNo.style.position = 'fixed';
+      btnNo.style.left = rect.left + 'px';
+      btnNo.style.top = rect.top + 'px';
+    }
+
+    function moveButtonRandomly() {
+      const btnWidth = btnNo.offsetWidth;
+      const btnHeight = btnNo.offsetHeight;
+
+      const maxX = window.innerWidth - btnWidth - margin;
+      const maxY = window.innerHeight - btnHeight - margin;
+
+      const randomX = Math.floor(Math.random() * (maxX - margin)) + margin;
+      const randomY = Math.floor(Math.random() * (maxY - margin)) + margin;
+
+      btnNo.style.left = randomX + 'px';
+      btnNo.style.top = randomY + 'px';
+    }
+
+    let startedJumping = false;
+
+    btnNo.addEventListener('mouseenter', () => {
+      if (!startedJumping) {
+        startedJumping = true;
+      }
+      moveButtonRandomly();
+    });
+
+    btnNo.addEventListener('mousemove', () => {
+      if (startedJumping) {
+        moveButtonRandomly();
+      }
+    });
+
+    window.addEventListener('load', placeBtnNoRight);
+    window.addEventListener('resize', placeBtnNoRight);
+  </script>
+
+</body>
+</html>
