@@ -37,11 +37,10 @@
     }
     .buttons-container {
       margin-top: 50px;
-      width: 350px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      position: relative;
+      gap: 100px;
     }
     .btn {
       background: #e63946;
@@ -67,9 +66,7 @@
       transform: scale(1.05);
     }
     #btn-no {
-      position: fixed;
-      z-index: 9999;
-      transition: left 0.04s ease, top 0.04s ease;
+      position: absolute;
     }
   </style>
 </head>
@@ -95,13 +92,6 @@
   <script>
     const btnNo = document.getElementById('btn-no');
     const margin = 15;
-
-    function placeBtnNoRight() {
-      const rect = btnNo.getBoundingClientRect();
-      btnNo.style.position = 'fixed';
-      btnNo.style.left = rect.left + 'px';
-      btnNo.style.top = rect.top + 'px';
-    }
 
     function moveButtonRandomly() {
       const btnWidth = btnNo.offsetWidth;
@@ -129,9 +119,6 @@
     btnNo.addEventListener('mouseenter', triggerJump);
     btnNo.addEventListener('mousemove', triggerJump);
     btnNo.addEventListener('touchstart', triggerJump);
-
-    window.addEventListener('load', placeBtnNoRight);
-    window.addEventListener('resize', placeBtnNoRight);
   </script>
 
 </body>
